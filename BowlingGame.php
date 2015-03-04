@@ -70,29 +70,37 @@ class BowlingGame {
         for ($frame = 0; $frame <= $this->NumberofFrames; $frame++){
             for ($i = 0; $i <= count($this->Players[$i]); $i++) {
                 if($this->Shots[$currentShot] + $this->Shots[$currentShot + 1 ] == 10){
-                    //spare bonus
+                    $score = $score + 10 + $this->SpareBonusShots($currentShot);
                     $currentShot += 2;
                 } elseif ($this->Shots[$currentShot] == 10){
-                    //strike bonus
+                    $score = $score + 10 + $this->StrikeBonusShots($currentShot);
                     $currentShot += 1;
                 } else {
-                    //regular adding together
+                    $score = $score + $this->DefaultShots($currentShot);
                     $currentShot += 2;
                 }
-                    //return score here for each frame
+                    return $score;
+                    $Players[$i]["name"]["score"] = $score;
             }
 
         }
 
     }
 
-    function SpareBonusShots(){
+    function SpareBonusShots($currentShot){
         //record the current shot plus two
         //two shots as it's a spare then the one after
+        return $this->Shots[$currentShot + 2];
     }
 
-    function StrikeBonusShots(){
+    function StrikeBonusShots($currentShot){
         //record the current shot plus one and plus two
         //both as a strike is just one shot
+        return $this->Shots[$currentShot + 1] + $this->Shots[$currentShot + 2];
+    }
+
+    function DefaultShots($currentShot){
+        //function for regular shots (anything that is not a strike or spare)
+        return $this->Shots[$currentShot] + $this->Shots[$currentShot + 1];
     }
 }
