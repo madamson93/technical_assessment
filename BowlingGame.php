@@ -8,7 +8,7 @@
 class BowlingGame {
     /**
      * @var int
-     * Ultimate number of frames per bowling game
+     * Maximum number of frames per bowling game
      */
     public $NumberofFrames = 10;
 
@@ -20,9 +20,14 @@ class BowlingGame {
 
     /**
      * @var array
-     * two dimensional array to save players and scores
+     * multi dimensional array to save players and scores
      */
-    public $Players = array(        "name" => array (            "score" => array(            )        )    );
+    public $Players = array(
+        "name" => array (
+            "score" => array(
+                )
+            )
+        );
 
     /**
      * @var array
@@ -102,5 +107,11 @@ class BowlingGame {
     function DefaultShots($currentShot){
         //function for regular shots (anything that is not a strike or spare)
         return $this->Shots[$currentShot] + $this->Shots[$currentShot + 1];
+    }
+
+    function DisplayScoreBoard(){
+        for ($i = 0; $i <= count($this->Players[$i]); $i++){
+            Print("Player: " . $this->Players[$i]["name"] . "has scored " . $this->Players[$i]["name"]["score"]);
+        }
     }
 }
