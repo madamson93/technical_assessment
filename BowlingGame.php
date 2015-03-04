@@ -109,6 +109,8 @@ class BowlingGame {
         return $this->Shots[$currentShot] + $this->Shots[$currentShot + 1];
     }
 
+
+    //loop through all the players in the array and display the name and score
     function DisplayScoreBoard(){
         for ($i = 0; $i <= count($this->Players[$i]); $i++){
             Print("Player: " . $this->Players[$i]["name"] . "has scored " . $this->Players[$i]["name"]["score"]);
